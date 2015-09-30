@@ -1,6 +1,6 @@
 #import modules
 import webbrowser
-class movie():
+class Movie():
     """A class to process movie related data
 
     This class creates instances of data related to a specific movie
