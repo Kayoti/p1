@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-# Create your views here.
+#import data from database to display on webpage
+from p1.models import Info
+# Create your views 
 def index(request):
-    return HttpResponse("This is the index View")
+    movieobjects=Info.objects.all()
+    context={'movieobjects':movieobjects}
+    return render(request,'index.html',context)
     
