@@ -16,4 +16,7 @@ class Info(models.Model):
     title= models.CharField(max_length=400)
     link=models.CharField(max_length=400)
     imgurl=models.CharField(max_length=400)
+    #allows to see objects in DB as movie titles 
+    def __unicode__(self):
+        return self.title
     

@@ -7,8 +7,7 @@
     <!-- Bootstrap 3 -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    
     <style type="text/css" media="screen">
         body {
             padding-top: 80px;
@@ -32,10 +31,20 @@
             margin-bottom: 20px;
             padding-top: 20px;
         }
+        .addmovies {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        
         .movie-tile:hover {
             background-color: #EEE;
             cursor: pointer;
         }
+         .addmovies:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        
         .scale-media {
             padding-bottom: 56.25%;
             position: relative;
@@ -49,32 +58,20 @@
             top: 0;
             background-color: white;
         }
+        .scale-media form {
+        
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+            
+        }
+        
     </style>
-    <script type="text/javascript" charset="utf-8">
-        // Pause the video when the modal is closed
-        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
-            // Remove the src so the player itself gets removed, as this is the only
-            // reliable way to ensure the video stops playing in IE
-            $("#trailer-video-container").empty();
-        });
-        // Start playing the video whenever the trailer modal is opened
-        $(document).on('click', '.movie-tile', function (event) {
-            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
-            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
-            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
-              'id': 'trailer-video',
-              'type': 'text-html',
-              'src': sourceUrl,
-              'frameborder': 0
-            }));
-        });
-        // Animate in the movies when the page loads
-        $(document).ready(function () {
-          $('.movie-tile').hide().first().show("fast", function showNext() {
-            $(this).next("div").show("fast", showNext);
-          });
-        });
-    </script>
+    
 </head>
 <body>
     <!-- Trailer Video Modal -->
@@ -103,10 +100,91 @@
     <div class="container">
 	{% for x in movieobjects %}
      <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{{x.link}}" data-toggle="modal" data-target="#trailer">
-			<img src="{{x.img}}" width="220" height="342">
+			<img src="{{x.imgurl}}" width="320" height="342">
 			<h2>{{x.title}}</h2>
 	</div>
 	{% endfor %}
+   
+	
+  <div class="col-md-6 col-lg-4 addmovies text-center" data-toggle="modal" data-target="#input_modal">
+			<img src="http://www.endlessicons.com/wp-content/uploads/2012/12/add-icon.png" width="320" height="342">
+			<h2>ADD A Movie</h2>
+	</div>
+ 
+</div>
+   
+      <!-- Form Modal -->
+    <div class="modal" id="input_modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+         <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+              <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+         </a>
+         <div class="scale-media" id="input_modal_container">
+           
+            <form  id="addform"  class="col-md-6 col-lg-4 " role="form" method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="title">Movie Title:</label>
+                <div class="input-group">
+                  <input type="text" name="title"/>
+                </div>
+               </div>
+              <div class="form-group">
+                <label for="title">Movie Image Link:</label>
+                <div class="input-group">
+                  <input type="text" name="imgurl"/>
+                 </div>
+              </div>
+              <div class="form-group">
+                 <label for="title">Movie Youtube Trailer Link:</label>
+                 <div class="input-group">
+                  <input type="text" name="youtubeurl"/>
+                 </div>
+               </div>
+              <div class="form-group">
+                  <input type="submit" value="ADD" name="submit" class="btn btn-info"/>
+              </div>
+            </form>
+          </div>
+        </div>
+       </div>
     </div>
+    
+    <!-- Scripts -->
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+            $("#input_modal_container").hide();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+         $(document).on('click', '.addmovies', function (event) {
+           $("#input_modal_container").show();
+           
+        });
+        
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+        
+    </script>
   </body>
 </html>
