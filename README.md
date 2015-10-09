@@ -43,6 +43,7 @@ this will prompted django to run a server on your localhost at port 8000 usually
 * If you wish to interact with the database directly go to `localhost:8000/admin` use username: `udacity`  password:`udacity`,
 you will find info table that holds all the movie objects created. Objects are referenced by movie title.
 * Application assumes user input is correct, Youtube link must be used for trailer to work. The app will crash if input is corrupt.
+* If you happen to run into some Db issues or errors try running `manage.py dbsync` follow the wizard and hopefully it should be resolved.
 
 
 ###License
