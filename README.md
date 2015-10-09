@@ -3,27 +3,50 @@ A Movie Trailer Website where users can see A list of movies and watch the trail
 
 Structure
 p1/
+
 ├── manage.py
+
 ├── db.sqlite3
+
 ├── .gitignore.swp
+
 ├── .README.md
+
 ├── movie_list/
+
 │   ├── __init__.py
+
 │   ├── settings.py
+
 │   ├── urls.py
+
 │   ├── wsgi.py
+
 ├── p1/
+
 │   ├── __init__.py
+
 │   ├── admin.py
+
 │   ├── models.py
+
 │   ├── tests.py
+
 │   ├── urls.py
+
 │   ├── views.py
+
 	 └── templates/
+	 
 	    ├── index.html
+	    
 	 └── migration/
+	 
 		├── __init__.py
+		
 		├── 0001_initial.py
+		
+		
 Installation
 
 To install this app you need to have the following prerequests first:
