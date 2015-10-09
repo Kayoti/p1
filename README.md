@@ -14,27 +14,27 @@ p1/
 
 ├── movie_list/
 
-│   ├── __init__.py
+   ├── __init__.py
 
-│   ├── settings.py
+   ├── settings.py
 
-│   ├── urls.py
+   ├── urls.py
 
-│   ├── wsgi.py
+   ├── wsgi.py
 
 ├── p1/
 
-│   ├── __init__.py
+   ├── __init__.py
 
-│   ├── admin.py
+   ├── admin.py
 
-│   ├── models.py
+   ├── models.py
 
-│   ├── tests.py
+   ├── tests.py
 
-│   ├── urls.py
+   ├── urls.py
 
-│   ├── views.py
+   ├── views.py
 
 	 └── templates/
 	 
