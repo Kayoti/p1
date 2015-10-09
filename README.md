@@ -2,51 +2,31 @@ P1
 A Movie Trailer Website where users can see A list of movies and watch the trailers. Website stores a list of movie titles, box art, poster images, and movie trailer URLs. The data will then be expressed on the web page and allow users to review the movies and watch the trailers. Users can also add their favorite movie to the list by filling a webform.
 
 Structure
+```
 p1/
-
 ├── manage.py
-
 ├── db.sqlite3
-
 ├── .gitignore.swp
-
 ├── .README.md
-
 ├── movie_list/
-
-   ├── __init__.py
-
-   ├── settings.py
-
-   ├── urls.py
-
-   ├── wsgi.py
-
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
 ├── p1/
-
-   ├── __init__.py
-
-   ├── admin.py
-
-   ├── models.py
-
-   ├── tests.py
-
-   ├── urls.py
-
-   ├── views.py
-
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
 	 └── templates/
-	 
 	    ├── index.html
-	    
 	 └── migration/
-	 
 		├── __init__.py
-		
 		├── 0001_initial.py
-		
-		
+
+```		
 Installation
 
 To install this app you need to have the following prerequests first:
